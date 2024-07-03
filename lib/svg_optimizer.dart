@@ -5,6 +5,7 @@ import 'package:args/args.dart';
 const String _inputOptionName = 'input';
 const String _outputOptionName = 'output';
 
+/// Function to optimize SVG file using SVGO
 void optimizeSvg(List<String> arguments) {
   final ArgParser argParser = buildParser();
   try {
@@ -24,6 +25,7 @@ void optimizeSvg(List<String> arguments) {
   }
 }
 
+/// Build argument parser with input and output options
 ArgParser buildParser() => ArgParser()
   ..addOption(_inputOptionName, mandatory: true, abbr: 'i')
   ..addOption(_outputOptionName, mandatory: true, abbr: 'o');

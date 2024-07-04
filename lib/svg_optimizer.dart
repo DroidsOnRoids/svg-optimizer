@@ -11,10 +11,16 @@ void optimizeSvg(List<String> arguments) {
   try {
     final ArgResults results = argParser.parse(arguments);
 
-    Process.runSync(
+    final ProcessResult result = Process.runSync(
       'svgo',
       ['-i', results[_inputOptionName], '-o', results[_outputOptionName]],
     );
+    if (result.exitCode != 0) {
+      print(result.stderr);
+      exit(result.exitCode);
+    } else {
+      print(result.stdout);
+    }
   } on FormatException catch (e) {
     print(e.message);
     print(argParser.usage);

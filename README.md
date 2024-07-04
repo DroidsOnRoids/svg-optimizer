@@ -9,14 +9,14 @@ The goal of this package is to simplify the optimization of SVG files in Flutter
 Before package can be used, make sure to complete all of the prerequisites listed below.
 
 1. [Install SVGO](https://svgo.dev/docs/introduction/)
-2. Make sure to add Node and SVGO to environmental variables.
+2. Make sure to add Node and SVGO to PATH environmental variable so that SVG Optimizer will be able to run them.
 
 ## Usage
 ### Installation
 To use this plugin, add `svg_optimizer` as a [dependency in your pubspec.yaml file](https://docs.flutter.dev/development/packages-and-plugins/using-packages).
 
 ```yml
-dependencies:
+dev_dependencies:
   svg_optimizer: ^0.0.1
 ```
 

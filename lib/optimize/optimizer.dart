@@ -19,6 +19,7 @@ void optimizeSvg(List<String> arguments) {
       exit(result.exitCode);
     } else {
       print(result.stdout);
+      exit(0);
     }
   } on FormatException catch (e) {
     print(e.message);

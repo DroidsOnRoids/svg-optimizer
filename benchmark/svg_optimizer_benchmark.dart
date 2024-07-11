@@ -64,7 +64,7 @@ Future<void> main(List<String> arguments) async {
   }
 }
 
-/// Build argument parser with input and output options
+/// Build argument parser with --android and --ios flags
 ArgParser buildParser() => ArgParser()
   ..addFlag(SupportedPlatform.android.value, defaultsTo: false)
   ..addFlag(SupportedPlatform.ios.value, defaultsTo: false);

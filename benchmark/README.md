@@ -76,3 +76,12 @@ Build size without svg_optimizer: 29.49 MB
 Build size with svg_optimizer: 24.00 MB
 Optimized build size is 5.49 MB smaller (18.60%)
 ```
+
+## Sources
+- SVG Files:
+  - https://www.figma.com/community/file/1113810392963859281/670-free-comic-illustrations-bruxelles-vector-illustrations-set-svg-png
+  - https://www.figma.com/community/file/1105485675187256849/1-600-free-illustrations-vector-illustrations-set-svg-png
+  - https://www.figma.com/community/file/1091370964776006563/1-700-free-illustrations-brooklyn-illustrations-vector-set-svg-png
+  - https://www.figma.com/community/file/1093160816660454395/220-lively-doodling-illustrations-manila-vector-illustrations-set-svg-png
+  - https://www.figma.com/community/file/1071151296679851124/570-abstract-illustrations-bangalore-vector-illustrations-set-svg-png
+  - https://www.figma.com/community/file/1098552327059233409/470-realistic-illustrations-london-vector-illustrations-set-svg-png

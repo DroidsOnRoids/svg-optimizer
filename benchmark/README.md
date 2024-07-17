@@ -35,16 +35,18 @@ commands based on your target platform:
   ```zsh
   dart run svg_optimizer_benchmark.dart --android
   ```
-  
+
 - **For iOS (IPA):**
   ```zsh
   dart run svg_optimizer_benchmark.dart --ios
   ```
+
 The benchmark tool will automatically modify the `pubspec.yaml` file to include or exclude
 the `svg_optimizer` package, execute the `flutter build` command for each project category, and log
 the size of the output files for comparison.
 
 ## Example Output
+
 ```zsh
 *** Benchmarking small project... ***
 
@@ -78,10 +80,88 @@ Optimized build size is 5.49 MB smaller (18.60%)
 ```
 
 ## Sources
+
 - SVG Files:
-  - https://www.figma.com/community/file/1113810392963859281/670-free-comic-illustrations-bruxelles-vector-illustrations-set-svg-png
-  - https://www.figma.com/community/file/1105485675187256849/1-600-free-illustrations-vector-illustrations-set-svg-png
-  - https://www.figma.com/community/file/1091370964776006563/1-700-free-illustrations-brooklyn-illustrations-vector-set-svg-png
-  - https://www.figma.com/community/file/1093160816660454395/220-lively-doodling-illustrations-manila-vector-illustrations-set-svg-png
-  - https://www.figma.com/community/file/1071151296679851124/570-abstract-illustrations-bangalore-vector-illustrations-set-svg-png
-  - https://www.figma.com/community/file/1098552327059233409/470-realistic-illustrations-london-vector-illustrations-set-svg-png
+    - https://www.figma.com/community/file/1113810392963859281/670-free-comic-illustrations-bruxelles-vector-illustrations-set-svg-png
+    - https://www.figma.com/community/file/1105485675187256849/1-600-free-illustrations-vector-illustrations-set-svg-png
+    - https://www.figma.com/community/file/1091370964776006563/1-700-free-illustrations-brooklyn-illustrations-vector-set-svg-png
+    - https://www.figma.com/community/file/1093160816660454395/220-lively-doodling-illustrations-manila-vector-illustrations-set-svg-png
+    - https://www.figma.com/community/file/1071151296679851124/570-abstract-illustrations-bangalore-vector-illustrations-set-svg-png
+    - https://www.figma.com/community/file/1098552327059233409/470-realistic-illustrations-london-vector-illustrations-set-svg-png
+
+# Benchmarking on-screen loading times of SVGs
+
+This section outlines the process for benchmarking the on-screen loading times of SVG files using
+the `svg_optimizer` package. The goal is to measure the performance improvement in loading times
+when SVGs are optimized.
+
+## Overview
+
+The benchmarking process involves using the `flutter_driver` package to automate the loading of SVG
+files on-screen and measuring the time taken for them to render. This method provides a quantitative
+measure of the performance benefits gained from optimizing SVG files with the `svg_optimizer`
+package.
+
+## Steps for benchmarking
+
+To run benchmark tests for on-screen loading times, follow these steps:
+
+- Include benchmark assets in `pubspec.yaml`:
+    - Add the following lines to the `pubspec.yaml` file to include the benchmark SVG files
+      **WITHOUT** `svg_optimizer` package and measure loading time of unoptimized SVGs:
+
+      ```yaml
+      assets:
+        - path: assets/benchmark_svg/big_project/
+        - path: assets/benchmark_svg/medium_project/
+        - path: assets/benchmark_svg/small_project/
+      ```
+
+    - Add the following lines to the `pubspec.yaml` file to include the benchmark SVG files
+      **WITH** `svg_optimizer` package and measure loading time of optimized SVGs:
+
+      ```yaml
+      assets:
+        - path: assets/benchmark_svg/big_project/
+          transformers:
+            - package: svg_optimizer
+        - path: assets/benchmark_svg/medium_project/
+          transformers:
+            - package: svg_optimizer
+        - path: assets/benchmark_svg/small_project/
+          transformers:
+            - package: svg_optimizer
+      ```  
+
+- Navigate to the `svg_optimizer/example` directory.
+
+- Run the following command to start the benchmark tests:
+
+  ```zsh
+  flutter drive --driver=test/test_driver/perf_driver.dart --target=test/benchmark_svg_loading_test.dart --no-dds --profile
+  ```
+
+Upon completion, the test results are saved in the `example/build` directory. Two
+files, `loading_svgs.timeline.json` and `loading_svgs.timeline_summary.json`, contain detailed
+metrics on the rendering times.
+
+Use the Chrome browser's tracing tools available at `chrome://tracing` to open and analyze
+the `loading_svgs.timeline.json` file. This tool provides a visual representation of the rendering
+times, allowing for an in-depth analysis of the performance impact.
+
+## Results
+
+This section documents the results of benchmarking tests conducted to evaluate the performance
+improvement in on-screen loading times of SVG files after optimization with the `svg_optimizer`
+package.
+The tests demonstrated a significant reduction in rendering times, highlighting the efficiency
+of SVG optimization in real-world application scenarios.
+
+Key Points:
+
+- The benchmarking was performed on an example application that utilizes the `svg_optimizer`
+  package.
+- A comprehensive test covering all SVG files included in the project was conducted.
+- The results indicated a notable improvement, with a ~30% reduction in the time required to render
+  SVGs on-screen.
+- The testing device used for this benchmark was an iPhone 15 Plus.

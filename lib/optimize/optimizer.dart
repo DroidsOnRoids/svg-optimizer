@@ -11,15 +11,23 @@ void optimizeSvg(List<String> arguments) {
   try {
     final ArgResults results = argParser.parse(arguments);
 
+    final String inputName = results[_inputOptionName];
+    final String outputName = results[_outputOptionName];
+
+    if (!inputName.toLowerCase().endsWith('.svg')) {
+      File(inputName).copySync(outputName);
+      exit(0);
+    }
+
     final String? configPath = results[_configOptionName];
 
     final ProcessResult result = Process.runSync(
       'svgo',
       [
         '-i',
-        results[_inputOptionName],
+        inputName,
         '-o',
-        results[_outputOptionName],
+        outputName,
         if (configPath != null) ...['--config', configPath],
       ],
     );

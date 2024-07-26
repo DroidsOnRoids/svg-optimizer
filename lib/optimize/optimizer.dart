@@ -34,6 +34,7 @@ void optimizeSvg(List<String> arguments) {
 
     if (result.exitCode != 0) {
       print(result.stderr);
+      stderr.write(result.stderr);
       exit(result.exitCode);
     } else {
       print(result.stdout);

@@ -159,7 +159,7 @@ of SVG optimization in real-world application scenarios.
 
 Key Points:
 
-- The benchmarking was performed on an example application that utilizes the `svg_optimizer`package.
+- The benchmarking was performed on an example application that utilizes the `svg_optimizer` package.
 - A comprehensive test covering all SVG files included in the project was conducted.
 - The results indicated a notable improvement, with a ~30% reduction in the time required to render SVGs on-screen.
 - The testing device used for this benchmark was an iPhone 15 Plus.

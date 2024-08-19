@@ -25,19 +25,22 @@ class Benchmark {
     // Reset pubspec.yaml to original form before making changes
     yamlFile.writeAsStringSync(originalYaml.toString());
 
-    final List<dynamic> currentAssets = jsonDecode(jsonEncode(editor.parseAt(['flutter', 'assets']).value));
+    final List<dynamic> currentAssets =
+        jsonDecode(jsonEncode(editor.parseAt(['flutter', 'assets']).value));
 
     late final int nonOptimizedBuildSize;
     late final int optimizedBuildSize;
 
     // Append assets to pubspec.yaml without transformer
-    projectSize.getAssetRecords(false).forEach((element) => editor.appendToList(['flutter', 'assets'], element));
+    projectSize.getAssetRecords(false).forEach(
+        (element) => editor.appendToList(['flutter', 'assets'], element));
     yamlFile.writeAsStringSync(editor.toString());
 
     // Make a benchmark with non optimized SVG files
     Directory.current = Directory('../example');
     print('Building without svg_optimizer...');
-    final ProcessResult nonOptimizedResult = await Process.run('flutter', platform.buildArguments);
+    final ProcessResult nonOptimizedResult =
+        await Process.run('flutter', platform.buildArguments);
     if (nonOptimizedResult.exitCode != 0) {
       print(nonOptimizedResult.stderr);
       throw Exception('Failed to build non optimized project');
@@ -49,13 +52,15 @@ class Benchmark {
     // Reset previous changes to assets in pubspec.yaml
     editor.update(['flutter', 'assets'], currentAssets);
     // Append assets to pubspec.yaml with transformer
-    projectSize.getAssetRecords(true).forEach((element) => editor.appendToList(['flutter', 'assets'], element));
+    projectSize.getAssetRecords(true).forEach(
+        (element) => editor.appendToList(['flutter', 'assets'], element));
     yamlFile.writeAsStringSync(editor.toString());
 
     // Make a benchmark with optimized SVG files
     print('Building with svg_optimizer...');
     Directory.current = Directory('../example');
-    final ProcessResult optimizedResult = await Process.run('flutter', platform.buildArguments);
+    final ProcessResult optimizedResult =
+        await Process.run('flutter', platform.buildArguments);
     if (optimizedResult.exitCode != 0) {
       print(optimizedResult.stderr);
       throw Exception('Failed to build optimized project');

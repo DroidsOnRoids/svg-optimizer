@@ -14,7 +14,8 @@ Future<void> main(List<String> arguments) async {
   final ArgParser argParser = buildParser();
   final ArgResults results = argParser.parse(arguments);
 
-  SupportedPlatform? platform = SupportedPlatform.values.firstWhereOrNull((element) => results[element.value] == true);
+  SupportedPlatform? platform = SupportedPlatform.values
+      .firstWhereOrNull((element) => results[element.value] == true);
 
   if (platform == null) {
     print('Please provide platform argument');

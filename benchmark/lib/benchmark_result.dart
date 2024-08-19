@@ -10,7 +10,8 @@ class BenchmarkResult {
   });
 
   @override
-  String toString() => 'Build size without svg_optimizer: ${FileSizeFormatter.format(nonOptimizedBuildSize)}\n'
+  String toString() =>
+      'Build size without svg_optimizer: ${FileSizeFormatter.format(nonOptimizedBuildSize)}\n'
       'Build size with svg_optimizer: ${FileSizeFormatter.format(optimizedBuildSize)}\n'
       'Optimized build size is ${FileSizeFormatter.format(nonOptimizedBuildSize - optimizedBuildSize)} smaller '
       '(${((nonOptimizedBuildSize - optimizedBuildSize) / nonOptimizedBuildSize * 100).toStringAsFixed(2)}%)\n';

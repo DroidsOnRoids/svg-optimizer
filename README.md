@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://raw.githubusercontent.com/DroidsOnRoids/svg-optimizer/main/screenshots/logo.png" height="200" alt="Flutter svg_optimizer Package" />
+</p>
+
 # SVG Optimizer
 
 A Dart package that optimizes SVG files at build time using SVGO.

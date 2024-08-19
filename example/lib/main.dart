@@ -45,7 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               const Text('Non optimized svg:'),
               FutureBuilder(
-                future: rootBundle.loadString('assets/svg_no_optimize/heart.svg'),
+                future:
+                    rootBundle.loadString('assets/svg_no_optimize/heart.svg'),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Text(snapshot.data!);

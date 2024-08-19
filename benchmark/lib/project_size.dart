@@ -11,17 +11,20 @@ enum ProjectSize {
 }
 
 extension ProjectSizeExtension on ProjectSize {
-  List<Map<String, dynamic>> getAssetRecords(bool withTransformer) => switch (this) {
+  List<Map<String, dynamic>> getAssetRecords(bool withTransformer) =>
+      switch (this) {
         ProjectSize.small => [
             AssetRecordUtils.getAssetRecord(_smallProjectPath, withTransformer),
           ],
         ProjectSize.medium => [
             AssetRecordUtils.getAssetRecord(_smallProjectPath, withTransformer),
-            AssetRecordUtils.getAssetRecord(_mediumProjectPath, withTransformer),
+            AssetRecordUtils.getAssetRecord(
+                _mediumProjectPath, withTransformer),
           ],
         ProjectSize.big => [
             AssetRecordUtils.getAssetRecord(_smallProjectPath, withTransformer),
-            AssetRecordUtils.getAssetRecord(_mediumProjectPath, withTransformer),
+            AssetRecordUtils.getAssetRecord(
+                _mediumProjectPath, withTransformer),
             AssetRecordUtils.getAssetRecord(_bigProjectPath, withTransformer),
           ],
       };

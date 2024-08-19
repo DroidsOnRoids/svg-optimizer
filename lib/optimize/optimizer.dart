@@ -45,7 +45,8 @@ void optimizeSvg(List<String> arguments) {
     print(argParser.usage);
     exit(1);
   } on ProcessException catch (_) {
-    print('It looks like svgo is not configured properly. To install it, refer to README file.');
+    print(
+        'It looks like svgo is not configured properly. To install it, refer to README file.');
     exit(1);
   } catch (e) {
     print(e.toString());

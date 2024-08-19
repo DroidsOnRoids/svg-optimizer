@@ -54,16 +54,20 @@ class _BenchmarkPageState extends State<BenchmarkPage> {
   }
 
   Future<List<String>> getSvgPaths() async {
-    final List<String> bigProjectImages = await getImagePaths('assets/benchmark_svg/big_project');
-    final List<String> mediumProjectImages = await getImagePaths('assets/benchmark_svg/medium_project');
-    final List<String> smallProjectImages = await getImagePaths('assets/benchmark_svg/small_project');
+    final List<String> bigProjectImages =
+        await getImagePaths('assets/benchmark_svg/big_project');
+    final List<String> mediumProjectImages =
+        await getImagePaths('assets/benchmark_svg/medium_project');
+    final List<String> smallProjectImages =
+        await getImagePaths('assets/benchmark_svg/small_project');
     return bigProjectImages + mediumProjectImages + smallProjectImages;
   }
 
-  Future<List<String>> getImagePaths(String path) async => jsonDecode(await rootBundle.loadString('AssetManifest.json'))
-      .keys
-      .where((String key) => key.contains(path))
-      .toList();
+  Future<List<String>> getImagePaths(String path) async =>
+      jsonDecode(await rootBundle.loadString('AssetManifest.json'))
+          .keys
+          .where((String key) => key.contains(path))
+          .toList();
 }
 
 const Key picturesListKey = ValueKey('picturesListKey');

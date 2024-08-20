@@ -2,7 +2,7 @@ name: svg_optimizer
 description: A Dart package that optimizes SVG files at build time using SVGO.
 repository: https://github.com/DroidsOnRoids/svg-optimizer
 issue_tracker: https://github.com/DroidsOnRoids/svg-optimizer/issues
-version: 0.0.1
+version: 0.0.1+1
 
 environment:
   sdk: ^3.4.3

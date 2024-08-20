@@ -6,6 +6,12 @@
 
 A Dart package that optimizes SVG files at build time using SVGO.
 
+Developed with 💛 by [Droids On Roids](https://www.thedroidsonroids.com/) ⚡
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/DroidsOnRoids/svg-optimizer/main/screenshots/logo_dor.png" height=100 alt="Droids On Roids logo"/>
+</p>
+
 ## Overview
 The goal of this package is to simplify the optimization of SVG files in Flutter projects using transformers.
 
@@ -21,7 +27,7 @@ To use this plugin, add `svg_optimizer` as a [dependency in your pubspec.yaml fi
 
 ```yml
 dev_dependencies:
-  svg_optimizer: ^0.0.1
+  svg_optimizer: ^0.0.1+1
 ```
 
 or run this command:

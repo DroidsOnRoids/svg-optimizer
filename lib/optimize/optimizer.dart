@@ -1,15 +1,33 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
+import 'package:posix/posix.dart';
 
 const String _inputOptionName = 'input';
 const String _outputOptionName = 'output';
 const String _configOptionName = 'config';
 
-void optimizeSvg(List<String> arguments) {
+Future<void> optimizeSvg(List<String> arguments) async {
   final ArgParser argParser = buildParser();
   try {
     final ArgResults results = argParser.parse(arguments);
+
+    bool canProceed = false;
+    while (!canProceed) {
+      final lastFd = dup(0);
+      if (lastFd >= 0) {
+        close(lastFd);
+        int totalFd = getdtablesize();
+        int possibleOpenFiles = totalFd - lastFd;
+        if (possibleOpenFiles >= 16) {
+          canProceed = true;
+        } else {
+          await Future.delayed(const Duration(seconds: 1));
+        }
+      } else {
+        canProceed = true;
+      }
+    }
 
     final String inputName = results[_inputOptionName];
     final String outputName = results[_outputOptionName];
@@ -55,7 +73,7 @@ void optimizeSvg(List<String> arguments) {
 }
 
 /// Build argument parser with input and output options
-ArgParser buildParser() => ArgParser()
-  ..addOption(_inputOptionName, mandatory: true, abbr: 'i')
-  ..addOption(_outputOptionName, mandatory: true, abbr: 'o')
-  ..addOption(_configOptionName, mandatory: false);
+ArgParser buildParser() =>
+    ArgParser()
+      ..addOption(_inputOptionName, mandatory: true, abbr: 'i')..addOption(
+        _outputOptionName, mandatory: true, abbr: 'o')..addOption(_configOptionName, mandatory: false);
